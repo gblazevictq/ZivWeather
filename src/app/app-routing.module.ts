@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { WeatherLookupComponent } from './components/weather-lookup/weather-lookup.component';
+import { WeatherComponent } from './pages/weather/weather.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: WeatherLookupComponent,
+    component: WeatherComponent,
   },
   {
     path: '**',
