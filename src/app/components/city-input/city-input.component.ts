@@ -29,6 +29,7 @@ export class CityInputComponent implements OnInit {
     });
     this.citySearched.pipe(debounceTime(300)).subscribe(() => {
       this.stateSvc.selectedCity.next(null);
+      this.stateSvc.retrievedForecast.next(null);
       this.filterCities();
     });
   }

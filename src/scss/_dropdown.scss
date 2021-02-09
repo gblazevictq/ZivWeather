@@ -61,6 +61,7 @@
 
     &__textElement {
       font-weight: 700;
+      color: #08153e;
     }
 
     &__textInput {
@@ -72,6 +73,16 @@
       border: none;
       outline: none;
       font-weight: 700;
+      background-image: url('../assets/search.svg');
+      background-repeat: no-repeat;
+      background-position: right calc((#{$cSelectorHeight} / 2) - 0.75rem)
+        bottom calc((#{$cSelectorHeight} / 2) - 0.75rem);
+      color: #08153e;
+
+      &::placeholder {
+        color: rgba(8, 21, 62, 0.5);
+        font-weight: 400;
+      }
     }
   }
 }
