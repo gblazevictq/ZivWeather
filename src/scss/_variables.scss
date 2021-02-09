@@ -12,6 +12,12 @@ $background-gradient: linear-gradient(
   #fe9255 100%
 );
 
+// Font stack is extracted from Bootstrap's _variables.scss
+$fontStack: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+  'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif,
+  'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji' !default;
+
+$darkTextColor: #08153e;
 $widgetBackgroundColor: #f8f8f8;
 $countrySelectorWidth: 6rem;
 $citySelectorWidth: 26.5rem;

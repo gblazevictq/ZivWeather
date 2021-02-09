@@ -54,4 +54,10 @@ export class WeatherStateComponent implements OnInit {
   getWeatherData(): void {
     this.weatherData = this.stateSvc.retrievedForecast.value.data.slice(0, 7);
   }
+
+  processDateToDay(datetime: string): string {
+    const dt = new Date(datetime);
+    const options = { weekday: 'long' };
+    return dt.toLocaleDateString(undefined, options);
+  }
 }

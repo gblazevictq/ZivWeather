@@ -62,8 +62,8 @@
     }
 
     &__textElement {
-      font-weight: 700;
-      color: #08153e;
+      font-weight: 600;
+      color: $darkTextColor;
     }
 
     &__textInput {
@@ -74,12 +74,12 @@
       padding: 0 3rem 0 1rem;
       border: none;
       outline: none;
-      font-weight: 700;
+      font-weight: 600;
       background-image: url('../assets/search.svg');
       background-repeat: no-repeat;
       background-position: right calc((#{$cSelectorHeight} / 2) - 0.75rem)
         bottom calc((#{$cSelectorHeight} / 2) - 0.75rem);
-      color: #08153e;
+      color: $darkTextColor;
       background-color: $widgetBackgroundColor;
 
       &::placeholder {
