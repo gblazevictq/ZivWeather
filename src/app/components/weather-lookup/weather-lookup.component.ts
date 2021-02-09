@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ICountry } from 'country-state-city';
+import { ICity, ICountry } from 'country-state-city';
 
 @Component({
   selector: 'app-weather-lookup',
@@ -8,6 +8,7 @@ import { ICountry } from 'country-state-city';
 })
 export class WeatherLookupComponent implements OnInit {
   selectedCountry: ICountry;
+  selectedCity: ICity;
 
   constructor() {}
 

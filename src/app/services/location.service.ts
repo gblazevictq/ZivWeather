@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ICountry } from 'country-state-city';
+import { ICity, ICountry } from 'country-state-city';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -11,5 +11,9 @@ export class LocationService {
 
   getCountries(): Observable<ICountry[]> {
     return this.http.get<ICountry[]>('assets/country-state-city/country.json');
+  }
+
+  getCities(): Observable<ICity[]> {
+    return this.http.get<ICity[]>('assets/country-state-city/city.json');
   }
 }

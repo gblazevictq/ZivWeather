@@ -1,0 +1,19 @@
+<div class="m-locationContainer m-locationContainer--city">
+  <div class="m-locationContainer__dropdownElement m-locationContainer__dropdownElement--city">
+    <input type="text"
+           class="m-locationContainer__dropdownElement__textInput"
+           [(ngModel)]="citySearchValue"
+           (ngModelChange)="searchCities()">
+  </div>
+  <div class="m-locationContainer__dropdownList"
+       *ngIf="this.filteredCountryCities.length > 0">
+    <div class="m-locationContainer__dropdownList__innerContainer">
+      <div class="m-locationContainer__dropdownElement m-locationContainer__dropdownElement--city"
+           *ngFor="let city of filteredCountryCities"
+           title="{{ city.name }}"
+           (click)="selectCity(city)">
+        <span class="m-locationContainer__dropdownElement__textElement">{{ city.name }}</span>
+      </div>
+    </div>
+  </div>
+</div>

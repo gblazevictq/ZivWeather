@@ -1,21 +1,24 @@
-<div class="m-countriesList"
+<div class="m-locationContainer m-locationContainer--country"
      (click)="countrySelectorHidden = !countrySelectorHidden">
-  <div class="m-countriesList__countryElement"
-       *ngIf="selectedCountry">
-    <div class="m-countriesList__countryElement__countryFlag"
-         [style.backgroundImage]="'url(assets/flags/' + countryNameSterilize(selectedCountry.name) + '.png)'"></div>
-    <span class="m-countriesList__countryElement__countryIsoCode">{{ selectedCountry.isoCode }}</span>
+  <div class="m-locationContainer__dropdownElement m-locationContainer__dropdownElement--country"
+       *ngIf="stateSvc.selectedCountry.value !== null"
+       title="{{ stateSvc.selectedCountry.value.name }}">
+    <div class="m-locationContainer__dropdownElement__countryFlag"
+         [style.backgroundImage]="'url(assets/flags/' + stateSvc.selectedCountry.value.isoCode.toLowerCase() + '.png)'">
+    </div>
+    <span class="m-locationContainer__dropdownElement__textElement">{{ stateSvc.selectedCountry.value.isoCode }}</span>
   </div>
-  <div class="m-countriesList__countryList"
+  <div class="m-locationContainer__dropdownList"
        *ngIf="!countrySelectorHidden">
-    <div class="m-countriesList__countryList__innerContainer">
-      <div class="m-countriesList__countryElement"
+    <div class="m-locationContainer__dropdownList__innerContainer">
+      <div class="m-locationContainer__dropdownElement m-locationContainer__dropdownElement--country"
            *ngFor="let country of countries"
-           (click)="selectedCountryEmitter.emit(country)">
-        <div class="m-countriesList__countryElement__countryFlag"
-             [style]="{ 'background-image': 'url(assets/flags/' + countryNameSterilize(country.name) + '.png)' }">
+           (click)="selectCountry(country)"
+           title="{{ country.name }}">
+        <div class="m-locationContainer__dropdownElement__countryFlag"
+             [style]="{ 'background-image': 'url(assets/flags/' + country.isoCode.toLowerCase() + '.png)' }">
         </div>
-        <span class="m-countriesList__countryElement__countryIsoCode">{{ country.isoCode }}</span>
+        <span class="m-locationContainer__dropdownElement__textElement">{{ country.isoCode }}</span>
       </div>
     </div>
   </div>
