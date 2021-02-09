@@ -3,6 +3,7 @@
   height: $cSelectorHeight;
   border: $cSelectorBorder;
   border-radius: $cSelectorBorderRadius;
+  background-color: $widgetBackgroundColor;
 
   &.m-locationContainer--country {
     margin: 0 0.75rem;
@@ -22,6 +23,7 @@
     background-color: #ffffff;
     border: $cSelectorBorder;
     border-radius: $cSelectorBorderRadius;
+    background-color: $widgetBackgroundColor;
 
     &__innerContainer {
       width: calc(100% + 40px); // To hide the scroll bar
@@ -78,6 +80,7 @@
       background-position: right calc((#{$cSelectorHeight} / 2) - 0.75rem)
         bottom calc((#{$cSelectorHeight} / 2) - 0.75rem);
       color: #08153e;
+      background-color: $widgetBackgroundColor;
 
       &::placeholder {
         color: rgba(8, 21, 62, 0.5);
