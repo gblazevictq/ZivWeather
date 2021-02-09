@@ -14,6 +14,7 @@ export class StateService {
   retrievedForecast: BehaviorSubject<IWeatherForecast> = new BehaviorSubject(
     null
   );
+  averageTemperature: BehaviorSubject<number> = new BehaviorSubject(null);
 
   constructor(private weatherSvc: WeatherService) {
     this.selectedCity.subscribe((city) => {

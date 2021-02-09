@@ -15,7 +15,7 @@ export class WeatherService {
 
   getForecast(city: IWeatherCity): Observable<IWeatherForecast> {
     return this.http.get<IWeatherForecast>(
-      `${this.WEATHER_API}forecast/daily?lat=${city.lat}&lon=${city.lon}&days=7&key=${environment.weatherbitAPIkey}`
+      `${this.WEATHER_API}forecast/daily?lat=${city.lat}&lon=${city.lon}&days=10&key=${environment.weatherbitAPIkey}`
     );
   }
 }

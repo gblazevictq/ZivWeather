@@ -1,1 +1,11 @@
-<p>weather-state works!</p>
+<div class="o-weatherState">
+  <p class="a-weatherState__averageDate">{{ dateStart.toDateString() }} - {{ dateEnd.toDateString() }}</p>
+  <h1 class="a-weatherState__averageTemp">{{ stateSvc.averageTemperature.value }}<sup>&deg;C</sup></h1>
+  <div class="m-weatherState__elementsList">
+    <div *ngFor="let weatherElement of weatherData"
+         class="a-weatherState__elementsList__item">
+      <p>{{ weatherElement.datetime }}</p>
+      <p>{{ weatherElement.temp }}<sup>&deg;C</sup></p>
+    </div>
+  </div>
+</div>
