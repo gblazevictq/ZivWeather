@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ICity, ICountry } from 'country-state-city';
 import { Observable } from 'rxjs';
+import { IWeatherCity } from '../models/weather-city.interface';
+import { IWeatherCountry } from '../models/weather-country.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -9,11 +10,13 @@ import { Observable } from 'rxjs';
 export class LocationService {
   constructor(private http: HttpClient) {}
 
-  getCountries(): Observable<ICountry[]> {
-    return this.http.get<ICountry[]>('assets/country-state-city/country.json');
+  getCountries(): Observable<IWeatherCountry[]> {
+    return this.http.get<IWeatherCountry[]>(
+      'assets/location-data/countries.json'
+    );
   }
 
-  getCities(): Observable<ICity[]> {
-    return this.http.get<ICity[]>('assets/country-state-city/city.json');
+  getCities(): Observable<IWeatherCity[]> {
+    return this.http.get<IWeatherCity[]>('assets/location-data/cities.json');
   }
 }

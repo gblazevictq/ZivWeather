@@ -1,19 +1,31 @@
 import { Injectable } from '@angular/core';
-import { ICity, ICountry } from 'country-state-city';
 import { BehaviorSubject } from 'rxjs';
+import { IWeatherCity } from '../models/weather-city.interface';
+import { IWeatherCountry } from '../models/weather-country.interface';
+import { IWeatherForecast } from '../models/weather-forecast.interface';
 import { WeatherService } from './weather.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StateService {
-  selectedCity: BehaviorSubject<ICity> = new BehaviorSubject(null);
-  selectedCountry: BehaviorSubject<ICountry> = new BehaviorSubject(null);
+  selectedCity: BehaviorSubject<IWeatherCity> = new BehaviorSubject(null);
+  selectedCountry: BehaviorSubject<IWeatherCountry> = new BehaviorSubject(null);
+  retrievedForecast: BehaviorSubject<IWeatherForecast> = new BehaviorSubject(
+    null
+  );
 
   constructor(private weatherSvc: WeatherService) {
     this.selectedCity.subscribe((city) => {
       if (city !== null) {
-        this.weatherSvc.getForecast(city);
+        this.weatherSvc.getForecast(city).subscribe({
+          next: (cityForecast) => {
+            this.retrievedForecast.next(cityForecast);
+          },
+          error: () => {
+            alert('Error retrieving forecast.');
+          },
+        });
       }
     });
   }

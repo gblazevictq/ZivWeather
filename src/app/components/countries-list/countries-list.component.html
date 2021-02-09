@@ -2,11 +2,12 @@
      (click)="countrySelectorHidden = !countrySelectorHidden">
   <div class="m-locationContainer__dropdownElement m-locationContainer__dropdownElement--country"
        *ngIf="stateSvc.selectedCountry.value !== null"
-       title="{{ stateSvc.selectedCountry.value.name }}">
+       title="{{ stateSvc.selectedCountry.value.country_name }}">
     <div class="m-locationContainer__dropdownElement__countryFlag"
-         [style.backgroundImage]="'url(assets/flags/' + stateSvc.selectedCountry.value.isoCode.toLowerCase() + '.png)'">
+         [style.backgroundImage]="'url(assets/flags/' + stateSvc.selectedCountry.value.country_code.toLowerCase() + '.png)'">
     </div>
-    <span class="m-locationContainer__dropdownElement__textElement">{{ stateSvc.selectedCountry.value.isoCode }}</span>
+    <span class="m-locationContainer__dropdownElement__textElement">{{ stateSvc.selectedCountry.value.country_code
+      }}</span>
   </div>
   <div class="m-locationContainer__dropdownList"
        *ngIf="!countrySelectorHidden">
@@ -14,11 +15,11 @@
       <div class="m-locationContainer__dropdownElement m-locationContainer__dropdownElement--country"
            *ngFor="let country of countries"
            (click)="selectCountry(country)"
-           title="{{ country.name }}">
+           title="{{ country.country_name }}">
         <div class="m-locationContainer__dropdownElement__countryFlag"
-             [style]="{ 'background-image': 'url(assets/flags/' + country.isoCode.toLowerCase() + '.png)' }">
+             [style]="{ 'background-image': 'url(assets/flags/' + country.country_code.toLowerCase() + '.png)' }">
         </div>
-        <span class="m-locationContainer__dropdownElement__textElement">{{ country.isoCode }}</span>
+        <span class="m-locationContainer__dropdownElement__textElement">{{ country.country_code }}</span>
       </div>
     </div>
   </div>

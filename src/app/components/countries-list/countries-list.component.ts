@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ICountry } from 'country-state-city';
+import { IWeatherCountry } from '../../models/weather-country.interface';
 import { LocationService } from '../../services/location.service';
 import { StateService } from '../../services/state.service';
 
@@ -9,7 +9,7 @@ import { StateService } from '../../services/state.service';
   styleUrls: ['./countries-list.component.scss'],
 })
 export class CountriesListComponent implements OnInit {
-  countries: ICountry[] = [];
+  countries: IWeatherCountry[] = [];
   countrySelectorHidden = true;
 
   constructor(private locSvc: LocationService, public stateSvc: StateService) {}
@@ -18,7 +18,7 @@ export class CountriesListComponent implements OnInit {
     this.locSvc.getCountries().subscribe({
       next: (countries) => {
         this.countries = countries.sort((a, b) =>
-          a.isoCode > b.isoCode ? 1 : -1
+          a.country_code > b.country_code ? 1 : -1
         );
         this.stateSvc.selectedCountry.next(this.countries[0]);
       },
@@ -28,7 +28,7 @@ export class CountriesListComponent implements OnInit {
     });
   }
 
-  selectCountry(country: ICountry): void {
+  selectCountry(country: IWeatherCountry): void {
     this.stateSvc.selectedCountry.next(country);
     this.stateSvc.selectedCity.next(null);
   }

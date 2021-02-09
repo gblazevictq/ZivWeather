@@ -10,9 +10,9 @@
     <div class="m-locationContainer__dropdownList__innerContainer">
       <div class="m-locationContainer__dropdownElement m-locationContainer__dropdownElement--city"
            *ngFor="let city of filteredCountryCities"
-           title="{{ city.name }}"
+           title="{{ city.city_name }}"
            (click)="selectCity(city)">
-        <span class="m-locationContainer__dropdownElement__textElement">{{ city.name }}</span>
+        <span class="m-locationContainer__dropdownElement__textElement">{{ city.city_name }}</span>
       </div>
     </div>
   </div>

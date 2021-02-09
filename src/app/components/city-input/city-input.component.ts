@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ICity, ICountry } from 'country-state-city';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { IWeatherCity } from '../../models/weather-city.interface';
+import { IWeatherCountry } from '../../models/weather-country.interface';
 import { LocationService } from '../../services/location.service';
 import { StateService } from '../../services/state.service';
 
@@ -11,8 +12,8 @@ import { StateService } from '../../services/state.service';
   styleUrls: ['./city-input.component.scss'],
 })
 export class CityInputComponent implements OnInit {
-  allCountryCities: ICity[] = [];
-  filteredCountryCities: ICity[] = [];
+  allCountryCities: IWeatherCity[] = [];
+  filteredCountryCities: IWeatherCity[] = [];
   citySearchValue = '';
   citySearched: Subject<string> = new Subject();
 
@@ -32,12 +33,12 @@ export class CityInputComponent implements OnInit {
     });
   }
 
-  loadCitiesByCountry(country: ICountry): void {
+  loadCitiesByCountry(country: IWeatherCountry): void {
     if (country !== null) {
       this.locSvc.getCities().subscribe({
         next: (cities) => {
           this.allCountryCities = cities.filter(
-            (city) => city.countryCode === country.isoCode
+            (city) => city.country_code === country.country_code
           );
         },
         error: () => {
@@ -57,15 +58,15 @@ export class CityInputComponent implements OnInit {
   filterCities(): void {
     this.filteredCountryCities = this.allCountryCities.filter(
       (city) =>
-        city.name.toLowerCase().indexOf(this.citySearchValue.toLowerCase()) > 0
+        city.city_name
+          .toLowerCase()
+          .indexOf(this.citySearchValue.toLowerCase()) > -1
     );
   }
 
-  selectCity(city: ICity): void {
+  selectCity(city: IWeatherCity): void {
     this.stateSvc.selectedCity.next(city);
-    this.citySearchValue = city.name;
+    this.citySearchValue = city.city_name;
     this.filteredCountryCities = [];
-
-    // run search weather
   }
 }
