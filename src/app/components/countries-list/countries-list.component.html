@@ -16,7 +16,7 @@
     <div class="m-countriesList__countryList__innerContainer">
       <div class="m-countriesList__countryElement"
            *ngFor="let country of countries"
-           (click)="selectedCountry = country">
+           (click)="selectedCountryEmitter.emit(country)">
         <div class="m-countriesList__countryElement__countryFlag"
              [style]="{ 'background-image': 'url(assets/flags/' + countryNameSterilize(country.name) + '.png)' }">
         </div>

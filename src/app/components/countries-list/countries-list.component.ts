@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ICountry } from 'country-state-city';
 import { LocationService } from '../../services/location.service';
 
@@ -8,8 +8,10 @@ import { LocationService } from '../../services/location.service';
   styleUrls: ['./countries-list.component.scss'],
 })
 export class CountriesListComponent implements OnInit {
+  @Input() selectedCountry: ICountry;
+  @Output() selectedCountryEmitter: EventEmitter<ICountry> = new EventEmitter();
+
   countries: ICountry[] = [];
-  selectedCountry: ICountry;
   countrySelectorHidden = true;
 
   constructor(private locSvc: LocationService) {}
@@ -18,7 +20,7 @@ export class CountriesListComponent implements OnInit {
     this.locSvc.getCountries().subscribe({
       next: (countries) => {
         this.countries = countries;
-        this.selectedCountry = countries[0];
+        this.selectedCountryEmitter.emit(countries[0]);
       },
       error: (error) => {
         console.log('error', error);
