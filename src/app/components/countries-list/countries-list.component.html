@@ -3,21 +3,25 @@
          alt="{{ country.name }}"> {{ country.isoCode }}</option>
 </select> -->
 
-<div class="m-countriesList">
+<div class="m-countriesList"
+     (click)="countrySelectorHidden = !countrySelectorHidden">
   <div class="m-countriesList__countryElement"
        *ngIf="selectedCountry">
-    <img src="assets/flags/{{ countryNameSterilize(selectedCountry.name) }}.png"
-         class="m-countriesList__countryElement__countryFlag"
-         alt="">
+    <div class="m-countriesList__countryElement__countryFlag"
+         [style.backgroundImage]="'url(assets/flags/' + countryNameSterilize(selectedCountry.name) + '.png)'"></div>
     <span class="m-countriesList__countryElement__countryIsoCode">{{ selectedCountry.isoCode }}</span>
   </div>
-  <div class="m-countriesList__countryList">
-    <div class="m-countriesList__countryElement"
-         *ngFor="let country of countries">
-      <img src="assets/flags/{{ countryNameSterilize(country.name) }}.png"
-           class="m-countriesList__countryElement__countryFlag"
-           alt="">
-      <span class="m-countriesList__countryElement__countryIsoCode">{{ country.isoCode }}</span>
+  <div class="m-countriesList__countryList"
+       *ngIf="!countrySelectorHidden">
+    <div class="m-countriesList__countryList__innerContainer">
+      <div class="m-countriesList__countryElement"
+           *ngFor="let country of countries"
+           (click)="selectedCountry = country">
+        <div class="m-countriesList__countryElement__countryFlag"
+             [style]="{ 'background-image': 'url(assets/flags/' + countryNameSterilize(country.name) + '.png)' }">
+        </div>
+        <span class="m-countriesList__countryElement__countryIsoCode">{{ country.isoCode }}</span>
+      </div>
     </div>
   </div>
 </div>

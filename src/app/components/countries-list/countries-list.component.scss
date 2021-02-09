@@ -1,28 +1,47 @@
+@use 'src/scss/variables' as vars;
+
 .m-countriesList {
   margin: 0 0.75rem;
   position: relative;
-  height: 3rem;
-  width: 6rem;
-  border: 1px solid rgba(8, 21, 62, 0.05);
+  height: vars.$countrySelectorHeight;
+  width: vars.$countrySelectorWidth;
+  border: vars.$countrySelectorBorder;
   border-radius: 0.5rem;
 
   &__countryList {
     position: absolute;
     top: 100%;
     width: 100%;
-    max-height: 30vh;
-    overflow-x: hidden;
-    overflow-y: auto;
+    height: vars.$countrySelectorDropdownHeight;
+    overflow: hidden;
     background-color: #ffffff;
-    border: 1px solid rgba(8, 21, 62, 0.05);
+    border: vars.$countrySelectorBorder;
     border-radius: 0.5rem;
+
+    &__innerContainer {
+      width: calc(100% + 40px);
+      height: calc(
+        #{vars.$countrySelectorDropdownHeight} - 2px
+      ); // Account for border
+      overflow-x: hidden;
+      overflow-y: scroll;
+    }
   }
 
   &__countryElement {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: calc(#{vars.$countrySelectorWidth} - 2px); // Account for border
+    height: calc(#{vars.$countrySelectorHeight} - 2px); // Account for border
+
     &__countryFlag {
-      max-width: 1.125rem;
-      max-height: 1.125rem;
-      margin-right: 1rem;
+      width: 1.125rem;
+      height: 1.125rem;
+      margin: 0 1rem;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
     }
 
     &__countryIsoCode {

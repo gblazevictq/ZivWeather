@@ -10,6 +10,7 @@ import { LocationService } from '../../services/location.service';
 export class CountriesListComponent implements OnInit {
   countries: ICountry[] = [];
   selectedCountry: ICountry;
+  countrySelectorHidden = true;
 
   constructor(private locSvc: LocationService) {}
 
