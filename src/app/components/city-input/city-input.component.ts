@@ -24,12 +24,11 @@ export class CityInputComponent implements OnInit {
 
   ngOnInit(): void {
     this.stateSvc.selectedCountry.subscribe((country) => {
-      this.stateSvc.selectedCity.next(null);
+      this.stateSvc.resetCity();
       this.loadCitiesByCountry(country);
     });
     this.citySearched.pipe(debounceTime(300)).subscribe(() => {
-      this.stateSvc.selectedCity.next(null);
-      this.stateSvc.retrievedForecast.next(null);
+      this.stateSvc.resetCity();
       this.filterCities();
     });
   }

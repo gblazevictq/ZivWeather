@@ -27,9 +27,10 @@ export class WeatherStateComponent implements OnInit {
     this.stateSvc.retrievedForecast.value.data.forEach((dataElement) => {
       avgTmp += dataElement.temp;
     });
-    this.stateSvc.averageTemperature.next(
-      Math.round(avgTmp / this.stateSvc.retrievedForecast.value.data.length)
+    const rounded = Math.round(
+      avgTmp / this.stateSvc.retrievedForecast.value.data.length
     );
+    this.stateSvc.averageTemperature.next(rounded);
   }
 
   getDates(): void {

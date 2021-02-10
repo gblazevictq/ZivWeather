@@ -1,0 +1,11 @@
+@use 'src/scss/variables' as vars;
+
+.o-mainContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  min-height: 100vh;
+  padding: 2rem;
+  flex-direction: column;
+}

@@ -22,12 +22,6 @@ export class StateService {
   );
   averageTemperature: BehaviorSubject<number> = new BehaviorSubject(null);
 
-  defaultGradientDefinition =
-    'linear-gradient(124deg, #102f7e 0%, #0c8dd6 12.5%, #1aa0ec 25%, #60c6ff 37.5%, #9bdbff 50%, #b4deda 62.5%, #ffd66b 75%, #ffc178 87.5%, #fe9255 100%)';
-  gradientDefinition: BehaviorSubject<string> = new BehaviorSubject(
-    this.defaultGradientDefinition
-  );
-
   constructor(private weatherSvc: WeatherService) {
     this.selectedCity.subscribe((city) => {
       if (city !== null) {
@@ -41,16 +35,22 @@ export class StateService {
         });
       }
     });
-    this.averageTemperature.subscribe((avgTmp) => {
-      this.calculateGradient(avgTmp);
-    });
   }
 
-  calculateGradient(avgTmp: number): void {
-    console.log('running calc grad');
+  resetCountry(): void {
+    this.selectedCountry.next(null);
+    this.selectedCity.next(null);
+  }
+
+  resetCity(): void {
+    this.selectedCity.next(null);
+  }
+
+  calculateGradient(avgTmp: number): string {
+    const defaultGradientDefinition =
+      'linear-gradient(124deg, #102f7e 0%, #0c8dd6 12.5%, #1aa0ec 25%, #60c6ff 37.5%, #9bdbff 50%, #b4deda 62.5%, #ffd66b 75%, #ffc178 87.5%, #fe9255 100%)';
     if (avgTmp === null) {
-      console.log('got to here0');
-      this.gradientDefinition.next(this.defaultGradientDefinition);
+      return defaultGradientDefinition;
     } else {
       const rangesTemps: GradientDef[] = [
         {
@@ -66,7 +66,7 @@ export class StateService {
         {
           min: -20,
           max: -11,
-          color: '1aa0ec',
+          color: '#1aa0ec',
         },
         {
           min: -10,
@@ -110,11 +110,9 @@ export class StateService {
       // If higher than 40, default gradient
       if (gradIndx === -1) {
         if (avgTmp <= rangesTemps[0].min) {
-          console.log('got to here1');
-          this.gradientDefinition.next(rangesTemps[0].color);
+          return rangesTemps[0].color;
         } else if (avgTmp >= rangesTemps[rangesTemps.length - 1].max) {
-          console.log('got to here2');
-          this.gradientDefinition.next(this.defaultGradientDefinition);
+          return defaultGradientDefinition;
         }
       } else {
         const filteredRanges = rangesTemps.slice(0, gradIndx + 1);
@@ -129,8 +127,7 @@ export class StateService {
             tmpString += ' ' + (rangeIndx * increment).toString() + '%,';
           }
         });
-        console.log('got to here3');
-        this.gradientDefinition.next(tmpString);
+        return tmpString;
       }
     }
   }

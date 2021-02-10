@@ -1,2 +1,5 @@
-<app-weather-lookup></app-weather-lookup>
-<app-weather-state *ngIf="stateSvc.retrievedForecast.value !== null"></app-weather-state>
+<main class="o-mainContainer"
+      [style.background]="gradientOutput">
+  <app-weather-lookup></app-weather-lookup>
+  <app-weather-state *ngIf="stateSvc.retrievedForecast.value !== null"></app-weather-state>
+</main>
