@@ -31,6 +31,8 @@ export class CountriesListComponent implements OnInit {
   selectCountry(country: IWeatherCountry): void {
     this.stateSvc.selectedCountry.next(country);
     this.stateSvc.selectedCity.next(null);
+    this.stateSvc.retrievedForecast.next(null);
+    this.stateSvc.averageTemperature.next(null);
   }
 
   countryNameSterilize(input: string): string {

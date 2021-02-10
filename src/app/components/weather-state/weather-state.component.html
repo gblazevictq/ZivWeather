@@ -1,11 +1,11 @@
 <div class="o-weatherState">
-  <p class="a-weatherState__averageDate">{{ dateStart.toDateString() }} - {{ dateEnd.toDateString() }}</p>
+  <p class="a-weatherState__averageDate">{{ dateString }}</p>
   <p class="a-weatherState__averageTemp">{{ stateSvc.averageTemperature.value }}<sup>&deg;C</sup></p>
   <div class="m-weatherState__elementsList">
     <div *ngFor="let weatherElement of weatherData"
          class="a-weatherState__elementsList__item">
       <p class="a-weatherState__elementsList__itemDay">{{ processDateToDay(weatherElement.datetime) }}</p>
-      <p class="a-weatherState__elementsList__itemTemp">{{ weatherElement.temp }}<sup>&deg;C</sup></p>
+      <p class="a-weatherState__elementsList__itemTemp">{{ processTemp(weatherElement.temp) }}<sup>&deg;C</sup></p>
     </div>
   </div>
 </div>

@@ -42,13 +42,26 @@ export class WeatherStateComponent implements OnInit {
       ].datetime
     );
 
+    const monthOpt = { month: 'long' };
+    const startMonth = this.dateStart.toLocaleDateString(undefined, monthOpt);
+    const startDay = this.dateStart.getDate().toString();
+    const startYear = this.dateStart.getFullYear().toString();
+    const endMonth = this.dateEnd.toLocaleDateString(undefined, monthOpt);
+    const endDay = this.dateEnd.getDate().toString();
+    const endYear = this.dateEnd.getFullYear().toString();
+
     this.dateString =
-      this.dateStart.getMonth().toString() +
+      startMonth +
       ' ' +
-      this.dateStart.getDay().toString() +
-      (this.dateStart.getFullYear() === this.dateEnd.getFullYear())
-        ? ''
-        : this.dateEnd.getFullYear().toString();
+      startDay +
+      ' ' +
+      (startYear === endYear ? '' : startYear + ' ') +
+      ' - ' +
+      (startMonth === endMonth ? '' : endMonth) +
+      ' ' +
+      endDay +
+      ' ' +
+      endYear;
   }
 
   getWeatherData(): void {
@@ -59,5 +72,9 @@ export class WeatherStateComponent implements OnInit {
     const dt = new Date(datetime);
     const options = { weekday: 'long' };
     return dt.toLocaleDateString(undefined, options);
+  }
+
+  processTemp(temp: number): string {
+    return Math.round(temp).toString();
   }
 }
